@@ -1,11 +1,13 @@
+import React, { useState } from 'react'
 import './App.css'
-import Prices from './components/Prices'
-import Types from './components/Types'
+
 
 function App() {
 
   const priceRanges = ["$", "$$", "$$$", "$$$$", "$$$$$"]
+  const [price, setPrice] = useState()
   const pizzaTypes = ["chicago", "greek", "neapolitan", "new york", "sicilian"]
+  const [type, setType] = useState()
   const pizzarias = [
     {
       name: "McPizza's",
@@ -134,10 +136,34 @@ function App() {
     }
   ]
 
+  function handleType(e){
+    setType(e.target.innerText)
+  }
+
+  function handlePrice(e){
+    setPrice(e.target.innerText)
+  }
+
   return (
     <div className="App">
-      <Prices priceRanges={priceRanges} />
-      <Types pizzaTypes={pizzaTypes} />
+      <ul>
+        {pizzaTypes.map(pizzaType => (
+          <li>
+            <button onClick={handleType}>{pizzaType}</button>
+          </li>
+        ))}
+      </ul>
+      <ul>
+        {priceRanges.map(priceRange => (
+          <li>
+            <button onClick={handlePrice}>{priceRange}</button>
+          </li>
+        ))}
+      </ul>
+      <div>
+        <h1>Pizza type is: {type}</h1>
+        <h1>Price range is: {price}</h1>
+      </div>
     </div>
   )
 }
