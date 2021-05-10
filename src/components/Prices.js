@@ -5,7 +5,9 @@ function Prices(props){
         <div>
             <ul>
                 {props.priceRanges.map(price => (
-                    <li>{price}</li>
+                    <li>
+                        <button>{price}</button>
+                    </li>
                 ))}
             </ul>
         </div>

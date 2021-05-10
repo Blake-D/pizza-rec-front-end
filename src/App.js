@@ -1,5 +1,6 @@
 import './App.css'
 import Prices from './components/Prices'
+import Types from './components/Types'
 
 function App() {
 
@@ -136,6 +137,7 @@ function App() {
   return (
     <div className="App">
       <Prices priceRanges={priceRanges} />
+      <Types pizzaTypes={pizzaTypes} />
     </div>
   )
 }
