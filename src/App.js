@@ -135,7 +135,7 @@ function App() {
 
   return (
     <div className="App">
-      <Prices />
+      <Prices priceRanges={priceRanges} />
     </div>
   )
 }

@@ -1,9 +1,13 @@
 import React from "react"
 
-function Prices(){
+function Prices(props){
     return(
         <div>
-            <h1>prices go here</h1>
+            <ul>
+                {props.priceRanges.map(price => (
+                    <li>{price}</li>
+                ))}
+            </ul>
         </div>
     )
 }
