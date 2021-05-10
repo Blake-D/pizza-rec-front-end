@@ -8,6 +8,7 @@ function App() {
   const [price, setPrice] = useState()
   const pizzaTypes = ["chicago", "greek", "neapolitan", "new york", "sicilian"]
   const [type, setType] = useState()
+  const [recommendation, setRecommendation] = useState()
   const pizzarias = [
     {
       name: "McPizza's",
@@ -144,6 +145,15 @@ function App() {
     setPrice(e.target.innerText)
   }
 
+  function handleRecommendation(){
+    for(let i = 0; i < pizzarias.length; i++){
+      if(pizzarias[i].priceRange === price && pizzarias[i].typeServed === type){
+        setRecommendation(pizzarias[i].name)
+        i = pizzarias.length
+      }
+    }
+  }
+
   return (
     <div className="App">
       <ul>
@@ -163,6 +173,8 @@ function App() {
       <div>
         <h1>Pizza type is: {type}</h1>
         <h1>Price range is: {price}</h1>
+        <h1>We recommend: {recommendation}</h1>
+        <button onClick={handleRecommendation}>Get Recommendation</button>
       </div>
     </div>
   )
