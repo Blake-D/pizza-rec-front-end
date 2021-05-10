@@ -1,4 +1,5 @@
 import './App.css'
+import Prices from './components/Prices'
 
 function App() {
 
@@ -134,7 +135,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{pizzaTypes[0]}</h1>
+      <Prices />
     </div>
   )
 }
