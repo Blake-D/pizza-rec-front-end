@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
-import Recommendation from './components/Recommendation'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
@@ -29,14 +28,6 @@ function App() {
       })
   }, [])
 
-  // useEffect(() => {
-  //   fetch(`${REACT_APP_SERVER_URL}/api/pizzarias`)
-  //   .then(res => res.json())
-  //   .then(pizzariaData => {
-  //     setPizzaria(pizzariaData)
-  //   })
-  // },[])
-
   function handlePrice(e){
     setPrice(e.target.innerText)
   }
@@ -53,7 +44,6 @@ function App() {
     axios.post(`${REACT_APP_SERVER_URL}/api/pizzarias`, submission)
       .then(response => {
         setPizzaria(response.data[0].name)
-        console.log(pizzaria)
       })
   }
 
@@ -74,8 +64,9 @@ function App() {
         ))}
       </ul>
       <button onClick={handleSubmit}>Get Recommendation</button>
-      <div>your recommendation is: </div>
-      {/* <Recommendation pizzaria={pizzaria} /> */}
+      <div>Price Range: {price}</div>
+      <div>Pizza Style: {type}</div>
+      <div>We Recommend: {pizzaria}</div>
     </div>
   )
 }
