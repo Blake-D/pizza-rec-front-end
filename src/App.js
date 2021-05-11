@@ -8,7 +8,7 @@ function App() {
   const priceRanges = ["$", "$$", "$$$", "$$$$", "$$$$$"]
   const [prices, setPrices] = useState([])
   const pizzaTypes = ["chicago", "greek", "neapolitan", "new york", "sicilian"]
-  const [type, setType] = useState()
+  const [types, setTypes] = useState([])
   const [recommendation, setRecommendation] = useState()
   const pizzarias = [
     {
@@ -146,7 +146,13 @@ function App() {
       })
   }, [])
 
-  console.log(prices)
+  useEffect(() => {
+    fetch(`${REACT_APP_SERVER_URL}/api/types`)
+      .then(res => res.json())
+      .then(typeData => {
+        setTypes(typeData)
+      })
+  }, [])
 
   // function handleType(e){
   //   setType(e.target.innerText)
@@ -174,26 +180,13 @@ function App() {
           </li>
         ))}
       </ul>
-      {/* <ul>
-        {pizzaTypes.map(pizzaType => (
-          <li>
-            <button onClick={handleType}>{pizzaType}</button>
-          </li>
-        ))}
-      </ul>
       <ul>
-        {priceRanges.map(priceRange => (
+        {types.map(types => (
           <li>
-            <button onClick={handlePrice}>{priceRange}</button>
+            <button>{types.type}</button>
           </li>
         ))}
       </ul>
-      <div>
-        <h1>Pizza type is: {type}</h1>
-        <h1>Price range is: {price}</h1>
-        <h1>We recommend: {recommendation}</h1>
-        <button onClick={handleRecommendation}>Get Recommendation</button>
-      </div> */}
     </div>
   )
 }
