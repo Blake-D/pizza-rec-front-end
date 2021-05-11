@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 
 function App() {
 
   const priceRanges = ["$", "$$", "$$$", "$$$$", "$$$$$"]
-  const [price, setPrice] = useState()
+  const [price, setPrice] = useState([])
   const pizzaTypes = ["chicago", "greek", "neapolitan", "new york", "sicilian"]
   const [type, setType] = useState()
   const [recommendation, setRecommendation] = useState()
@@ -137,26 +138,36 @@ function App() {
     }
   ]
 
-  function handleType(e){
-    setType(e.target.innerText)
-  }
+  useEffect(() => {
+    fetch(`${REACT_APP_SERVER_URL}/api/prices`)
+      .then(res => res.json())
+      .then(priceData => {
+        setPrice(priceData)
+      })
+  }, [])
 
-  function handlePrice(e){
-    setPrice(e.target.innerText)
-  }
+  console.log(price)
 
-  function handleRecommendation(){
-    for(let i = 0; i < pizzarias.length; i++){
-      if(pizzarias[i].priceRange === price && pizzarias[i].typeServed === type){
-        setRecommendation(pizzarias[i].name)
-        i = pizzarias.length
-      }
-    }
-  }
+  // function handleType(e){
+  //   setType(e.target.innerText)
+  // }
+
+  // function handlePrice(e){
+  //   setPrice(e.target.innerText)
+  // }
+
+  // function handleRecommendation(){
+  //   for(let i = 0; i < pizzarias.length; i++){
+  //     if(pizzarias[i].priceRange === price && pizzarias[i].typeServed === type){
+  //       setRecommendation(pizzarias[i].name)
+  //       i = pizzarias.length
+  //     }
+  //   }
+  // }
 
   return (
     <div className="App">
-      <ul>
+      {/* <ul>
         {pizzaTypes.map(pizzaType => (
           <li>
             <button onClick={handleType}>{pizzaType}</button>
@@ -175,7 +186,7 @@ function App() {
         <h1>Price range is: {price}</h1>
         <h1>We recommend: {recommendation}</h1>
         <button onClick={handleRecommendation}>Get Recommendation</button>
-      </div>
+      </div> */}
     </div>
   )
 }
