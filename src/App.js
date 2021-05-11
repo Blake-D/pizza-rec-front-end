@@ -6,7 +6,7 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 function App() {
 
   const priceRanges = ["$", "$$", "$$$", "$$$$", "$$$$$"]
-  const [price, setPrice] = useState([])
+  const [prices, setPrices] = useState([])
   const pizzaTypes = ["chicago", "greek", "neapolitan", "new york", "sicilian"]
   const [type, setType] = useState()
   const [recommendation, setRecommendation] = useState()
@@ -142,11 +142,11 @@ function App() {
     fetch(`${REACT_APP_SERVER_URL}/api/prices`)
       .then(res => res.json())
       .then(priceData => {
-        setPrice(priceData)
+        setPrices(priceData)
       })
   }, [])
 
-  console.log(price)
+  console.log(prices)
 
   // function handleType(e){
   //   setType(e.target.innerText)
@@ -167,6 +167,13 @@ function App() {
 
   return (
     <div className="App">
+      <ul>
+        {prices.map(price => (
+          <li>
+            <button>{price.range}</button>
+          </li>
+        ))}
+      </ul>
       {/* <ul>
         {pizzaTypes.map(pizzaType => (
           <li>
