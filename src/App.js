@@ -1,142 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 
 function App() {
 
-  const priceRanges = ["$", "$$", "$$$", "$$$$", "$$$$$"]
   const [prices, setPrices] = useState([])
-  const pizzaTypes = ["chicago", "greek", "neapolitan", "new york", "sicilian"]
   const [types, setTypes] = useState([])
-  const [recommendation, setRecommendation] = useState()
-  const pizzarias = [
-    {
-      name: "McPizza's",
-      priceRange: "$",
-      typeServed: "chicago"
-    },
-    {
-      name: "House of Za's",
-      priceRange: "$$",
-      typeServed: "greek"
-    },
-    {
-      name: "Dom's Pizza Emporium",
-      priceRange: "$$$",
-      typeServed: "neapolitan"
-    },
-    {
-      name: "Chicago Eddie's",
-      priceRange: "$$$$",
-      typeServed: "new york"
-    },
-    {
-      name: "Angela's Pizza and Calzone Warehouse",
-      priceRange: "$$$$$",
-      typeServed: "sicilian"
-    },
-    {
-      name: "Thin Moustache Pies",
-      priceRange: "$",
-      typeServed: "greek"
-    },
-    {
-      name: "Heart Stoppers",
-      priceRange: "$$",
-      typeServed: "neapolitan"
-    },
-    {
-      name: "Snobberia",
-      priceRange: "$$$",
-      typeServed: "new york"
-    },
-    {
-      name: "Pizza Cave",
-      priceRange: "$$$$",
-      typeServed: "sicilian"
-    },
-    {
-      name: "Pizza Makers",
-      priceRange: "$$$$$",
-      typeServed: "chicago"
-    },
-    {
-      name: "John's",
-      priceRange: "$",
-      typeServed: "neapolitan"
-    },
-    {
-      name: "Cleveland's New York Pizza",
-      priceRange: "$$",
-      typeServed: "new york"
-    },
-    {
-      name: "El Sweenie's",
-      priceRange: "$$$",
-      typeServed: "sicilian"
-    },
-    {
-      name: "The Snob Shed",
-      priceRange: "$$$$",
-      typeServed: "chicago"
-    },
-    {
-      name: "Pizzaholica",
-      priceRange: "$$$$$",
-      typeServed: "greek"
-    },
-    {
-      name: "Pizza's 'r' Us",
-      priceRange: "$",
-      typeServed: "new york"
-    },
-    {
-      name: "Pizza Mart",
-      priceRange: "$$",
-      typeServed: "sicilian"
-    },
-    {
-      name: "Pizza Plus",
-      priceRange: "$$$",
-      typeServed: "chicago"
-    },
-    {
-      name: "Pizzalicious",
-      priceRange: "$$$$",
-      typeServed: "greek"
-    },
-    {
-      name: "Pizzas for More",
-      priceRange: "$$$$$",
-      typeServed: "neapolitan"
-    },
-    {
-      name: "Pizza for Less",
-      priceRange: "$",
-      typeServed: "sicilian"
-    },
-    {
-      name: "A Place for Pizza",
-      priceRange: "$$",
-      typeServed: "chicago"
-    },
-    {
-      name: "Pizza for You, Pizza for Me!",
-      priceRange: "$$$",
-      typeServed: "greek"
-    },
-    {
-      name: "Pizza for Hipsters",
-      priceRange: "$$$$",
-      typeServed: "neapolitan"
-    },
-    {
-      name: "Wait in Line to get Pizza",
-      priceRange: "$$$$$",
-      typeServed: "new york"
-    }
-  ]
+  const [price, setPrice] = useState()
+  const [type, setType] = useState()
+  const [pizzaria, setPizzaria] = useState([])
 
   useEffect(() => {
     fetch(`${REACT_APP_SERVER_URL}/api/prices`)
@@ -154,29 +28,37 @@ function App() {
       })
   }, [])
 
-  // function handleType(e){
-  //   setType(e.target.innerText)
-  // }
+  // useEffect(() => {
+  //   fetch(`${REACT_APP_SERVER_URL}/api/pizzarias`)
+  //   .then(res => res.json())
+  //   .then(pizzariaData => {
+  //     setPizzaria(pizzariaData)
+  //     console.log(pizzaria)
+  //   })
+  // }, [])
 
-  // function handlePrice(e){
-  //   setPrice(e.target.innerText)
-  // }
+  function handlePrice(e){
+    setPrice(e.target.innerText)
+    console.log(price)
+  }
 
-  // function handleRecommendation(){
-  //   for(let i = 0; i < pizzarias.length; i++){
-  //     if(pizzarias[i].priceRange === price && pizzarias[i].typeServed === type){
-  //       setRecommendation(pizzarias[i].name)
-  //       i = pizzarias.length
-  //     }
-  //   }
-  // }
+  function handleSubmit(){
+    // console.log(`price is set as ${price}`)
+    const param1 = {
+      thing: price
+    }
+    axios.post(`${REACT_APP_SERVER_URL}/api/pizzarias`, param1)
+      .then(response => {
+        console.log(response)
+      })
+  }
 
   return (
     <div className="App">
       <ul>
         {prices.map(price => (
           <li>
-            <button>{price.range}</button>
+            <button onClick={handlePrice}>{price.range}</button>
           </li>
         ))}
       </ul>
@@ -187,6 +69,7 @@ function App() {
           </li>
         ))}
       </ul>
+      <button onClick={handleSubmit}>Get Recommendation</button>
     </div>
   )
 }
