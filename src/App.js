@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+import Recommendation from './components/Recommendation'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
@@ -10,7 +11,7 @@ function App() {
   const [types, setTypes] = useState([])
   const [price, setPrice] = useState()
   const [type, setType] = useState()
-  const [pizzaria, setPizzaria] = useState([])
+  const [pizzaria, setPizzaria] = useState()
 
   useEffect(() => {
     fetch(`${REACT_APP_SERVER_URL}/api/prices`)
@@ -33,23 +34,26 @@ function App() {
   //   .then(res => res.json())
   //   .then(pizzariaData => {
   //     setPizzaria(pizzariaData)
-  //     console.log(pizzaria)
   //   })
-  // }, [])
+  // },[])
 
   function handlePrice(e){
     setPrice(e.target.innerText)
-    console.log(price)
+  }
+
+  function handleType(e){
+    setType(e.target.innerText)
   }
 
   function handleSubmit(){
-    // console.log(`price is set as ${price}`)
-    const param1 = {
-      thing: price
+    const submission = {
+      param1: price,
+      param2: type
     }
-    axios.post(`${REACT_APP_SERVER_URL}/api/pizzarias`, param1)
+    axios.post(`${REACT_APP_SERVER_URL}/api/pizzarias`, submission)
       .then(response => {
-        console.log(response)
+        setPizzaria(response.data[0].name)
+        console.log(pizzaria)
       })
   }
 
@@ -65,11 +69,13 @@ function App() {
       <ul>
         {types.map(types => (
           <li>
-            <button>{types.type}</button>
+            <button onClick={handleType}>{types.type}</button>
           </li>
         ))}
       </ul>
       <button onClick={handleSubmit}>Get Recommendation</button>
+      <div>your recommendation is: </div>
+      {/* <Recommendation pizzaria={pizzaria} /> */}
     </div>
   )
 }
