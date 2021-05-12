@@ -18,12 +18,18 @@ img{
 }
 
 button.type-option{
+  font-size: 3vmin;
+  height: 10vmin;
+  width: 20vmin;
   border-radius: 25px;
   color: gold;
   background-color: green;
 }
 
 button.price-option{
+  font-size: 2vmin;
+  height: 8vmin;
+  width: 16vmin;
   border-radius: 25px;
   color: gold;
   background-color: black;
