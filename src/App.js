@@ -3,8 +3,7 @@ import './App.css'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
-
-function App() {
+function App(){
 
   const [prices, setPrices] = useState([])
   const [types, setTypes] = useState([])
@@ -50,16 +49,16 @@ function App() {
   return (
     <div className="App">
       <ul>
-        {prices.map(price => (
+        {types.map(types => (
           <li>
-            <button onClick={handlePrice}>{price.range}</button>
+            <button onClick={handleType}>{types.type}</button>
           </li>
         ))}
       </ul>
       <ul>
-        {types.map(types => (
+        {prices.map(price => (
           <li>
-            <button onClick={handleType}>{types.type}</button>
+            <button onClick={handlePrice}>{price.range}</button>
           </li>
         ))}
       </ul>
