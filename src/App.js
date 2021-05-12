@@ -66,7 +66,7 @@ function App(){
           </li>
         ))}
       </ul>
-      <h2>And how much are you willing to spend?</h2>
+      <h2>And how much are you looking to spend?</h2>
       <ul>
         {prices.map(price => (
           <li>
@@ -75,11 +75,11 @@ function App(){
         ))}
       </ul>
       <div>
-        Pizza Style: {type}<br></br>
-        Price Range: {price}
+        <h3>Pizza Style: {type}</h3>
+        <h3>Price Range: {price}</h3>
       </div>
-      <button onClick={handleSubmit}>Get Recommendation</button>
-      <div>We Recommend: <a href="https://tenor.com/search/sorry-bud-gifs" target="_blank" rel="noreferrer">{pizzaria}</a></div>
+      <button id="rec-button" onClick={handleSubmit}>Get Recommendation!</button>
+      <h1>We Recommend: <a href="https://tenor.com/search/sorry-bud-gifs" target="_blank" rel="noreferrer">{pizzaria}</a></h1>
     </div>
   )
 }

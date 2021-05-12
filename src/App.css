@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 .App{
   text-align: center;
-  background-color: red;
-  height: 100vh;
+  background-color: rgb(177, 20, 20);
+  height: 120vh;
 }
 
 ul{
@@ -15,6 +18,16 @@ li{
 img{
   height: 20vmin;
   width: 30vmin;
+}
+
+h1, h2{
+  color: gold;
+  font-family: 'Dancing Script', cursive;
+}
+
+a{
+  color: gold;
+  font-family: 'Lobster', cursive;
 }
 
 button.type-option{
@@ -33,4 +46,14 @@ button.price-option{
   border-radius: 25px;
   color: gold;
   background-color: black;
+}
+
+#rec-button{
+  font-size: 3vmin;
+  height: 10vmin;
+  width: auto;
+  border-radius: 25px;
+  color: gold;
+  background-color: green;
+  margin-bottom: 2vh;
 }
