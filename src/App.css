@@ -1,5 +1,7 @@
 .App{
   text-align: center;
+  background-color: red;
+  height: 100vh;
 }
 
 ul{
@@ -8,4 +10,9 @@ ul{
 
 li{
   display: inline;
+}
+
+img{
+  height: 15vmin;
+  width: 20vmin;
 }

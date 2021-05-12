@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+import Chicago from './images/chicago.jpeg'
+import Greek from './images/greek.jpeg'
+import Neapolitan from './images/neapolitan.jpeg'
+import NewYork from './images/new_york.jpeg'
+import Sicilian from './images/sicilian.jpeg'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
@@ -48,6 +53,9 @@ function App(){
 
   return (
     <div className="App">
+      <div id="image-container">
+        <img src={Chicago}/><img src={NewYork}/><img src={Greek}/><img src={Sicilian}/><img src={Neapolitan}/>
+      </div>
       <ul>
         {types.map(types => (
           <li>
