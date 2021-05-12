@@ -40,15 +40,19 @@ function App(){
     setType(e.target.innerText)
   }
 
+  console.log(price, type)
+
   function handleSubmit(){
-    const submission = {
-      param1: price,
-      param2: type
+    if(price !== undefined && type !== undefined){
+      const submission = {
+        param1: price,
+        param2: type
+      }
+      axios.post(`${REACT_APP_SERVER_URL}/api/pizzarias`, submission)
+        .then(response => {
+          setPizzaria(response.data[0].name)
+        })
     }
-    axios.post(`${REACT_APP_SERVER_URL}/api/pizzarias`, submission)
-      .then(response => {
-        setPizzaria(response.data[0].name)
-      })
   }
 
   return (
