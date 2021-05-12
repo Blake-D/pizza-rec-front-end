@@ -16,3 +16,15 @@ img{
   height: 20vmin;
   width: 30vmin;
 }
+
+button.type-option{
+  border-radius: 25px;
+  color: gold;
+  background-color: green;
+}
+
+button.price-option{
+  border-radius: 25px;
+  color: gold;
+  background-color: black;
+}

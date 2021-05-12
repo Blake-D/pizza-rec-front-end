@@ -54,25 +54,27 @@ function App(){
   return (
     <div className="App">
       <div id="image-container">
-        <img src={Chicago}/><img src={NewYork}/><img src={Greek}/><img src={Sicilian}/><img src={Neapolitan}/>
+        <img src={Chicago} alt="Chicago style pizza"/><img src={NewYork} alt="New York style pizza"/><img src={Greek} alt="Greek style pizza"/><img src={Sicilian} alt="Sicilian style pizza"/><img src={Neapolitan} alt="Neapolitan style pizza"/>
       </div>
       <ul>
         {types.map(types => (
           <li>
-            <button onClick={handleType}>{types.type}</button>
+            <button className="type-option" onClick={handleType}>{types.type}</button>
           </li>
         ))}
       </ul>
       <ul>
         {prices.map(price => (
           <li>
-            <button onClick={handlePrice}>{price.range}</button>
+            <button className="price-option" onClick={handlePrice}>{price.range}</button>
           </li>
         ))}
       </ul>
+      <div>
+        Pizza Style: {type}<br></br>
+        Price Range: {price}
+      </div>
       <button onClick={handleSubmit}>Get Recommendation</button>
-      <div>Price Range: {price}</div>
-      <div>Pizza Style: {type}</div>
       <div>We Recommend: <a href="https://tenor.com/search/sorry-bud-gifs" target="_blank" rel="noreferrer">{pizzaria}</a></div>
     </div>
   )
