@@ -73,7 +73,7 @@ function App(){
       <button onClick={handleSubmit}>Get Recommendation</button>
       <div>Price Range: {price}</div>
       <div>Pizza Style: {type}</div>
-      <div>We Recommend: {pizzaria}</div>
+      <div>We Recommend: <a href="https://tenor.com/search/sorry-bud-gifs" target="_blank" rel="noreferrer">{pizzaria}</a></div>
     </div>
   )
 }
