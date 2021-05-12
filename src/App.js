@@ -6,7 +6,7 @@ import Neapolitan from './images/neapolitan.jpeg'
 import NewYork from './images/new_york.jpeg'
 import Sicilian from './images/sicilian.jpeg'
 const axios = require('axios')
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
+const REACT_APP_SERVER_URL = "http://localhost:8000"
 
 function App(){
 
