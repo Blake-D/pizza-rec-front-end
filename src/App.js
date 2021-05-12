@@ -40,8 +40,6 @@ function App(){
     setType(e.target.innerText)
   }
 
-  console.log(price, type)
-
   function handleSubmit(){
     if(price !== undefined && type !== undefined){
       const submission = {
@@ -60,6 +58,7 @@ function App(){
       <div id="image-container">
         <img src={Chicago} alt="Chicago style pizza"/><img src={NewYork} alt="New York style pizza"/><img src={Greek} alt="Greek style pizza"/><img src={Sicilian} alt="Sicilian style pizza"/><img src={Neapolitan} alt="Neapolitan style pizza"/>
       </div>
+      <h2>So tell me, what kinda pie are you into?</h2>
       <ul>
         {types.map(types => (
           <li>
@@ -67,6 +66,7 @@ function App(){
           </li>
         ))}
       </ul>
+      <h2>And how much are you willing to spend?</h2>
       <ul>
         {prices.map(price => (
           <li>
